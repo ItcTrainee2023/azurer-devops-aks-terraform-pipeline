@@ -33,7 +33,7 @@ stages:
         displayName: Terraform init
         inputs:
           command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifest-out'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests-out'
           backendType: 'azurerm'
           backendServiceArm: 'terraform-aks-azurerm-svc-con'
           backendAzureRmResourceGroupName: 'Capstonedemoniaz1'
