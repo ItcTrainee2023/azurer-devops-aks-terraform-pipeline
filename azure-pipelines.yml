@@ -63,7 +63,7 @@ stages:
     - deployment: DeployDevAKSCluster
       displayName: DeployDevAKSCluster
       pool:
-        name: Default
+        vmImage: 'ubuntu-latest'
       environment: $(DEV_ENVIRONMENT)
       strategy:
         runOnce:
@@ -83,6 +83,7 @@ stages:
                 backendAzureRmResourceGroupName: 'Capstonedemoniaz1'
                 backendAzureRmStorageAccountName: 'tstatestorageniaz'
                 backendAzureRmContainerName: 'tfstatefiles1'
+                backendAzureRmKey: 'aks-$(DEV_ENVIRONMENT).tfstate'
                 allowTelemetryCollection: false
             - task: TerraformCLI@0
               displayName: Terraform Plan
