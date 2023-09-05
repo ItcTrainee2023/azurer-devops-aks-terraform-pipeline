@@ -64,12 +64,16 @@ stages:
     - deployment: DeployDevAKSCluster
       displayName: DeployDevAKSCluster
       pool:
-        name: Default
+        vmImage: 'ubuntu-latest'
       environment: $(DEV_ENVIRONMENT)
       strategy:
         runOnce:
           deploy:
             steps:
+            - task: TerraformInstaller@0
+              displayName: Terraform Install
+              inputs:
+                terraformVersion: 'latest'
             - task: DownloadSecureFile@1
               displayName: Download SSH key
               name: sshkey
