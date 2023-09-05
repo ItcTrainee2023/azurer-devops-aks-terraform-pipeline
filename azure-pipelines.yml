@@ -97,5 +97,5 @@ stages:
                 command: 'apply'
                 environmentServiceName: 'terraform-aks-azurerm-svc-con'
                 commandOptions: '- out $(System.DefaultWorkingDirectory)/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
-                allowTelemetryCollection: false
+                allowTelemetryCollection: false 
             
