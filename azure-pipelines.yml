@@ -25,6 +25,10 @@ stages:
         displayName: Terraform Install
         inputs:
           terraformVersion: 'latest'
+      
+      - script: echo "$(System.DefaultWorkingDirectory)"
+        displayName: Print DefaultWorkingDirectory
+  
       - task: TerraformCLI@0
         displayName: Terraform init
         inputs:
