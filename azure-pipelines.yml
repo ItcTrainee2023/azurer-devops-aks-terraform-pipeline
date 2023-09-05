@@ -70,10 +70,6 @@ stages:
         runOnce:
           deploy:
             steps:
-            - task: TerraformInstaller@0
-              displayName: Terraform Install
-              inputs:
-                terraformVersion: 'latest'
             - task: DownloadSecureFile@1
               displayName: Download SSH key
               name: sshkey
@@ -83,7 +79,7 @@ stages:
               displayName: Terraform Init
               inputs:
                 command: 'init'
-                workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
+                workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
                 backendType: 'azurerm'
                 backendServiceArm: 'terraform-aks-azurerm-svc-con'
                 backendAzureRmResourceGroupName: 'Capstonedemoniaz1'
@@ -95,7 +91,7 @@ stages:
               displayName: Terraform Plan
               inputs:
                 command: 'plan'
-                workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
+                workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
                 environmentServiceName: 'terraform-aks-azurerm-svc-con'
                 commandOptions: '-var ssh_public_key=$(sshkey.secureFilePath)  -var environment=$(DEV_ENVIRONMENT)  -out $(System.DefaultWorkingDirectory)/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
                 allowTelemetryCollection: false
@@ -103,7 +99,7 @@ stages:
               displayName: Terraform Apply
               inputs:
                 command: 'apply'
-                workingDirectory: '$(Pipeline.Workspace)/terraform-manifests-out'
+                workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-manifests'
                 environmentServiceName: 'terraform-aks-azurerm-svc-con'
                 commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(DEV_ENVIRONMENT)-$(Build.BuildId).out'
                 allowTelemetryCollection: false 
