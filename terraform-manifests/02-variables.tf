@@ -12,7 +12,7 @@ variable "location" {
 # Azure Resource Group Name
 variable "resource_group_name" {
   type = string
-  description = "This variable defines the Resource Group"
+  description = "This variable defines the Resource Group ok..........."
   default = "terraform-aks-niaz"
 }
 
